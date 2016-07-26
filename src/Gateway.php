@@ -80,6 +80,15 @@ use Omnipay\Common\AbstractGateway;
  * Calls to the Allied Wallet Payments API must be authenticated using an OAuth
  * Bearer Token.
  *
+ * The request should contain the following header settings:
+ *
+ * Content-type: application/json
+ * Authorization: Bearer <OAuth Bearer Token>
+ *
+ * There is a merchant ID which forms part of the URL, and a site ID which is passed
+ * as a JSON parameter to the gateway for certain transaction types (authorizations
+ * and purchases).
+ *
  * @see \Omnipay\Common\AbstractGateway
  */
 class Gateway extends AbstractGateway

@@ -121,6 +121,11 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     /**
      * Send a request to the gateway.
      *
+     * The request should contain the following header settings:
+     *
+     * Content-type: application/json
+     * Authorization: Bearer <OAuth Bearer Token>
+     *
      * @param string $action
      * @param array  $data
      * @param string $method
