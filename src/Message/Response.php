@@ -29,7 +29,6 @@ class Response extends AbstractResponse
         if (isset($this->data['id'])) {
             return $this->data['id'];
         }
-        return '';
     }
 
     public function getTransactionId()
@@ -37,7 +36,6 @@ class Response extends AbstractResponse
         if (isset($this->data['trackingid'])) {
             return $this->data['trackingid'];
         }
-        return '';
     }
 
     public function getMessage()
@@ -45,7 +43,6 @@ class Response extends AbstractResponse
         if (isset($this->data['message'])) {
             return $this->data['message'];
         }
-        return '';
     }
 
     public function getCode()
@@ -53,6 +50,5 @@ class Response extends AbstractResponse
         if (isset($this->data['status'])) {
             return $this->data['status'];
         }
-        return 'Unconfirmed';
     }
 }

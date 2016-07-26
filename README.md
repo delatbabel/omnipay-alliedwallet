@@ -7,7 +7,7 @@
 [![Total Downloads](https://poser.pugx.org/omnipay/alliedwallet/d/total.png)](https://packagist.org/packages/omnipay/alliedwallet)
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
-processing library for PHP 5.3+. This package implements [Pin](https://alliedwallet.net.au/) support for Omnipay.
+processing library for PHP 5.3+. This package implements [Allied Wallet](https://www.alliedwallet.com/) support for Omnipay.
 
 [Allied Wallet](https://www.alliedwallet.com/) offers customized payment solutions to businesses of any size. Allied Wallet provide payment processing services in 164 currencies, 196 countries, and nearly every payment method globally.
  

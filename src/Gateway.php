@@ -94,8 +94,8 @@ class Gateway extends AbstractGateway
         return array(
             'merchantId'    => '',
             'siteId'        => '',
-            'oAuthToken'    => '',
-            'testMode' => false,
+            'token'         => '',
+            'testMode'      => false,
         );
     }
 
@@ -146,7 +146,28 @@ class Gateway extends AbstractGateway
      */
     public function setSiteId($value)
     {
-        return $this->setParameter('merchantId', $value);
+        return $this->setParameter('siteId', $value);
+    }
+
+    /**
+     * Get the OAuth bearer token.
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->getParameter('token');
+    }
+
+    /**
+     * Sets the OAuth bearer token.
+     *
+     * @param string $value
+     * @return Gateway Provides a fluent interface
+     */
+    public function setToken($value)
+    {
+        return $this->setParameter('token', $value);
     }
 
     /**

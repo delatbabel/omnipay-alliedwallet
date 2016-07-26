@@ -96,7 +96,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      */
     public function setSiteId($value)
     {
-        return $this->setParameter('merchantId', $value);
+        return $this->setParameter('siteId', $value);
     }
 
     /**

@@ -1,29 +1,25 @@
 {
-    "name": "omnipay/pin",
+    "name": "omnipay/alliedwallet",
     "type": "library",
-    "description": "Pin Payments driver for the Omnipay payment processing library",
+    "description": "Allied Wallet driver for the Omnipay payment processing library",
     "keywords": [
         "gateway",
         "merchant",
         "omnipay",
         "pay",
         "payment",
-        "pin"
+        "alliedwallet"
     ],
-    "homepage": "https://github.com/thephpleague/omnipay-pin",
+    "homepage": "https://github.com/delatbabel/omnipay-alliedwallet",
     "license": "MIT",
     "authors": [
         {
-            "name": "Adrian Macneil",
-            "email": "adrian@adrianmacneil.com"
-        },
-        {
-            "name": "Omnipay Contributors",
-            "homepage": "https://github.com/thephpleague/omnipay-pin/contributors"
+            "name": "Del",
+            "email": "del@babel.com.au"
         }
     ],
     "autoload": {
-        "psr-4": { "Omnipay\\Pin\\" : "src/" }
+        "psr-4": { "Omnipay\\AlliedWallet\\" : "src/" }
     },
     "require": {
         "omnipay/common": "~2.0"
