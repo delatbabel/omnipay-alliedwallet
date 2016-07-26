@@ -1,0 +1,6 @@
+.directory
+.idea
+vendor/
+documents/
+demo.php
+composer.lock
