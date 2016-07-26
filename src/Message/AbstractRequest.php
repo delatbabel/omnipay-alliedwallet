@@ -10,26 +10,13 @@ use Guzzle\Http\Message\RequestInterface;
 /**
  * Allied Wallet Abstract REST Request
  *
- * This is the parent class for all AlliedWallet REST requests.
+ * This is the parent class for all Allied Wallet REST requests.
  *
- * Test modes:
+ * ### Test modes
  *
- * The API has two endpoint host names:
- *
- * * api.pin.net.au (live)
- * * test-api.pin.net.au (test)
- *
- * The live host is for processing live transactions, whereas the test
- * host can be used for integration testing and development.
- *
- * Each endpoint requires a different set of API keys, which can be
- * found in your account settings.
- *
- * Currently this class makes the assumption that if the testMode
- * flag is set then the Test Endpoint is being used.
+ * The API has only one endpoint which is https://api.alliedwallet.com/
  *
  * @see \Omnipay\AlliedWallet\Gateway
- * @link https://pin.net.au/docs/api
  */
 abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
