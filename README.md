@@ -19,7 +19,7 @@ to your `composer.json` file:
 ```json
 {
     "require": {
-        "omnipay/alliedwallet": "~2.0"
+        "delatbabel/omnipay-alliedwallet": "~2.0"
     }
 }
 ```
