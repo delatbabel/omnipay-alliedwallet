@@ -1,5 +1,5 @@
 {
-    "name": "omnipay/alliedwallet",
+    "name": "delatbabel/omnipay-alliedwallet",
     "type": "library",
     "description": "Allied Wallet driver for the Omnipay payment processing library",
     "keywords": [
