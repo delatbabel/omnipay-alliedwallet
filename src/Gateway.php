@@ -68,7 +68,7 @@ use Omnipay\Common\AbstractGateway;
  * * For card payments, there are a lot of mandatory fields for cardholder information.
  *   First and last names, phone number, address, city, state, postal code, country, are
  *   all listed as mandatory by the gateway documentation.
- * * A transaction Id (sent to the gateway as trackingId) is required for every transaction.
+ * * A unique transaction Id (sent to the gateway as trackingId) is required for every transaction.
  *   This is alphanumeric with a limit of 100 characters.
  *
  * ### Test modes
@@ -232,5 +232,16 @@ class Gateway extends AbstractGateway
     public function void(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\AlliedWallet\Message\VoidRequest', $parameters);
+    }
+
+    /**
+     * Create a CreateCard request
+     *
+     * @param array $parameters
+     * @return \Omnipay\AlliedWallet\Message\CreateCardRequest
+     */
+    public function createCard(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\AlliedWallet\Message\CreateCardRequest', $parameters);
     }
 }

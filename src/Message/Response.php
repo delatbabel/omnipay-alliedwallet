@@ -31,6 +31,13 @@ class Response extends AbstractResponse
         }
     }
 
+    public function getCardReference()
+    {
+        if (isset($this->data['id'])) {
+            return $this->data['id'];
+        }
+    }
+
     public function getTransactionId()
     {
         if (isset($this->data['trackingid'])) {
