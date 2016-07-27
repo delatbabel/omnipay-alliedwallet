@@ -87,27 +87,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     }
 
     /**
-     * Get the request email.
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->getParameter('email');
-    }
-
-    /**
-     * Sets the request email.
-     *
-     * @param string $value
-     * @return AbstractRequest Provides a fluent interface
-     */
-    public function setEmail($value)
-    {
-        return $this->setParameter('email', $value);
-    }
-
-    /**
      * Get API endpoint URL
      *
      * @return string

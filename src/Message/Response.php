@@ -21,6 +21,13 @@ class Response extends AbstractResponse
         if (isset($this->data['status']) && ($this->data['status'] == 'Successful')) {
             return true;
         }
+
+        // status is not returned for createCard, active is used instead.
+        if (isset($this->data['active']) && ($this->data['active'] == true)) {
+            return true;
+        }
+
+        // No status, no other message we assume failure.
         return false;
     }
 

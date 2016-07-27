@@ -95,4 +95,15 @@ class GatewayTest extends GatewayTestCase
         $this->assertFalse($response->isRedirect());
         $this->assertSame('Failure', $response->getMessage());
     }
+
+    public function testCreateCardSuccess()
+    {
+        $this->setMockHttpResponse('CreateCardSuccess.txt');
+
+        $response = $this->gateway->createCard($this->options)->send();
+
+        $this->assertTrue($response->isSuccessful());
+        $this->assertFalse($response->isRedirect());
+        $this->assertEquals('123456', $response->getCardReference());
+    }
 }
