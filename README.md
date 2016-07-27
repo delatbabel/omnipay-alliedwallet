@@ -2,9 +2,9 @@
 
 **Allied Wallet driver for the Omnipay PHP payment processing library**
 
-[![Build Status](https://travis-ci.org/thephpleague/omnipay-alliedwallet.png?branch=master)](https://travis-ci.org/thephpleague/omnipay-alliedwallet)
-[![Latest Stable Version](https://poser.pugx.org/omnipay/alliedwallet/version.png)](https://packagist.org/packages/omnipay/alliedwallet)
-[![Total Downloads](https://poser.pugx.org/omnipay/alliedwallet/d/total.png)](https://packagist.org/packages/omnipay/alliedwallet)
+[![Build Status](https://travis-ci.org/delatbabel/omnipay-alliedwallet.png?branch=master)](https://travis-ci.org/thephpleague/omnipay-alliedwallet)
+[![Latest Stable Version](https://poser.pugx.org/delatbabel/omnipay-alliedwallet/version.png)](https://packagist.org/packages/omnipay/alliedwallet)
+[![Total Downloads](https://poser.pugx.org/delatbabel/omnipay-alliedwallet/d/total.png)](https://packagist.org/packages/omnipay/alliedwallet)
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment
 processing library for PHP 5.3+. This package implements [Allied Wallet](https://www.alliedwallet.com/) support for Omnipay.
