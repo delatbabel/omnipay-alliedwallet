@@ -107,13 +107,12 @@ class PurchaseRequest extends AbstractRequest
         $data = array();
 
         // Basic parameters
-        $data['siteId']                 = $this->getSiteId();
+        $data['SiteId']                 = $this->getSiteId();
         $data['amount']                 = $this->getAmount();
-        $data['currency']               = strtoupper($this->getCurrency());
+        $data['Currency']               = strtoupper($this->getCurrency());
 
         // Transaction parameters
-        $data['trackingId']             = $this->getTransactionId();
-        $data['isInitialForRecurring']  = 'false';
+        $data['TrackingId']             = $this->getTransactionId();
 
         $token = $this->getCardReference();
         if (! empty($token)) {
@@ -129,16 +128,18 @@ class PurchaseRequest extends AbstractRequest
             $this->getCard()->validate();
 
             // Cardholder Parameters
-            $data['firstName']              = $this->getCard()->getBillingFirstName();
-            $data['lastName']               = $this->getCard()->getBillingLastName();
-            $data['phone']                  = $this->getCard()->getBillingPhone();
-            $data['addressLine1']           = $this->getCard()->getBillingAddress1();
-            $data['addressLine2']           = $this->getCard()->getBillingAddress2();
-            $data['city']                   = $this->getCard()->getBillingCity();
-            $data['state']                  = $this->getCard()->getBillingState();
-            $data['countryId']              = $this->getCard()->getBillingCountry();
-            $data['postalCode']             = $this->getCard()->getBillingPostcode();
+            $data['FirstName']              = $this->getCard()->getBillingFirstName();
+            $data['LastName']               = $this->getCard()->getBillingLastName();
+            $data['Phone']                  = $this->getCard()->getBillingPhone();
+            $data['AddressLine1']           = $this->getCard()->getBillingAddress1();
+            # $data['AddressLine2']           = $this->getCard()->getBillingAddress2();
+            $data['AddressLine2']           = '1';
+            $data['City']                   = $this->getCard()->getBillingCity();
+            $data['State']                  = $this->getCard()->getBillingState();
+            $data['CountryId']              = $this->getCard()->getBillingCountry();
+            $data['PostalCode']             = $this->getCard()->getBillingPostcode();
 
+            /*
             $data['ShippingFirstName']      = $this->getCard()->getShippingFirstName();
             $data['ShippingLastName']       = $this->getCard()->getShippingLastName();
             $data['ShippingPhone']          = $this->getCard()->getShippingPhone();
@@ -148,20 +149,23 @@ class PurchaseRequest extends AbstractRequest
             $data['ShippingState']          = $this->getCard()->getShippingState();
             $data['ShippingCountryId']      = $this->getCard()->getShippingCountry();
             $data['ShippingPostalCode']     = $this->getCard()->getShippingPostcode();
+            */
 
-            $data['iPAddress']              = $this->getClientIp();
+            $data['IpAddress']              = $this->getClientIp();
             $data['email']                  = $this->getCard()->getEmail();
 
             // Card Parameters
             $data['cardNumber']             = $this->getCard()->getNumber();
-            $data['nameOnCard']             = $this->getCard()->getName();
-            $data['expirationMonth']        = $this->getCard()->getExpiryMonth();
-            $data['expirationYear']         = $this->getCard()->getExpiryYear();
-            $data['cVVCode']                = $this->getCard()->getCvv();
+            $data['NameOnCard']             = $this->getCard()->getName();
+            $data['ExpirationMonth']        = $this->getCard()->getExpiryMonth();
+            $data['ExpirationYear']         = $this->getCard()->getExpiryYear();
+            $data['CvvCode']                = $this->getCard()->getCvv();
         }
 
         // Strip all empty values from the data
         $data = array_filter($data);
+        $data['IsInitialForRecurring']  = 'false';
+        $data['SubscriptionPlanId']     = 0;
 
         return $data;
     }
