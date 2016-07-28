@@ -64,7 +64,9 @@ use Omnipay\Common\AbstractGateway;
  *
  * ### Quirks
  *
- * * This gateway does not support token payments.
+ * * Token payments are a new addition and not mentioned in the current API documentation.
+ *   The have been added to this version of the plugin but not tested yet.
+ * * The parameters passed to the gateway are not case sensitive.
  * * For card payments, there are a lot of mandatory fields for cardholder information.
  *   First and last names, phone number, address, city, state, postal code, country, are
  *   all listed as mandatory by the gateway documentation.
