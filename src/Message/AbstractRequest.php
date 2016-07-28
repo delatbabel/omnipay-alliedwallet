@@ -6,6 +6,7 @@
 namespace Omnipay\AlliedWallet\Message;
 
 use Guzzle\Http\Message\RequestInterface;
+use Omnipay\Common\Exception\InvalidResponseException;
 
 /**
  * Allied Wallet Abstract REST Request
@@ -110,6 +111,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      * @param string $method
      *
      * @return \Guzzle\Http\Message\Response
+     * @throws InvalidResponseException
      */
     public function sendRequest($action, $data = null, $method = RequestInterface::POST)
     {
@@ -124,13 +126,31 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         );
 
         // Return the response we get back from AlliedWallet Payments
-        return $this->httpClient->createRequest(
+
+        // Create the HTTP request
+        $httpRequest = $this->httpClient->createRequest(
             $method,
             $this->getEndpoint() . $action,
-            array('Authorization' => 'Bearer ' . $this->getToken(),
-                  'Content-type'  => 'application/json'),
-            $data
-        )->send();
+            array(
+                'Accept'        => 'application/json',
+                'Authorization' => 'Bearer ' . $this->getToken(),
+                'Content-type'  => 'application/json'
+            ),
+            json_encode($data)
+        );
+
+        // Set the HTTP request options to TLS 1.2 and send the request,
+        // returning the response.
+        try {
+            // Set TLS version to 1.2
+            $httpRequest->getCurlOptions()->set(CURLOPT_SSLVERSION, 6);
+            return $httpRequest->send();
+        } catch (\Exception $e) {
+            throw new InvalidResponseException(
+                'Error communicating with payment gateway: ' . $e->getMessage(),
+                $e->getCode()
+            );
+        }
     }
 
     public function sendData($data)

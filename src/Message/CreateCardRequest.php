@@ -129,17 +129,17 @@ class CreateCardRequest extends AbstractRequest
 
         $data = array();
 
-        // Cardholder Parameters
-        $data['firstName']              = $this->getCard()->getBillingFirstName();
-        $data['lastName']               = $this->getCard()->getBillingLastName();
-        $data['phone']                  = $this->getCard()->getBillingPhone();
-        $data['addressLine1']           = $this->getCard()->getBillingAddress1();
-        $data['addressLine2']           = $this->getCard()->getBillingAddress2();
-        $data['city']                   = $this->getCard()->getBillingCity();
-        $data['state']                  = $this->getCard()->getBillingState();
-        $data['countryId']              = $this->getCard()->getBillingCountry();
-        $data['postalCode']             = $this->getCard()->getBillingPostcode();
+        $data['FirstName']              = $this->getCard()->getBillingFirstName();
+        $data['LastName']               = $this->getCard()->getBillingLastName();
+        $data['Phone']                  = $this->getCard()->getBillingPhone();
+        $data['AddressLine1']           = $this->getCard()->getBillingAddress1();
+        $data['AddressLine2']           = $this->getCard()->getBillingAddress2();
+        $data['City']                   = $this->getCard()->getBillingCity();
+        $data['State']                  = $this->getCard()->getBillingState();
+        $data['CountryId']              = $this->getCard()->getBillingCountry();
+        $data['PostalCode']             = $this->getCard()->getBillingPostcode();
 
+        /*
         $data['ShippingFirstName']      = $this->getCard()->getShippingFirstName();
         $data['ShippingLastName']       = $this->getCard()->getShippingLastName();
         $data['ShippingPhone']          = $this->getCard()->getShippingPhone();
@@ -149,15 +149,16 @@ class CreateCardRequest extends AbstractRequest
         $data['ShippingState']          = $this->getCard()->getShippingState();
         $data['ShippingCountryId']      = $this->getCard()->getShippingCountry();
         $data['ShippingPostalCode']     = $this->getCard()->getShippingPostcode();
+        */
 
         $data['email']                  = $this->getCard()->getEmail();
 
         // Card Parameters
         $data['number']                 = $this->getCard()->getNumber();
-        $data['nameOnCard']             = $this->getCard()->getName();
-        $data['expirationMonth']        = $this->getCard()->getExpiryMonth();
-        $data['expirationYear']         = $this->getCard()->getExpiryYear();
-        $data['cVVCode']                = $this->getCard()->getCvv();
+        $data['NameOnCard']             = $this->getCard()->getName();
+        $data['ExpirationMonth']        = $this->getCard()->getExpiryMonth();
+        $data['ExpirationYear']         = $this->getCard()->getExpiryYear();
+        $data['CvvCode']                = $this->getCard()->getCvv();
 
         return $data;
     }

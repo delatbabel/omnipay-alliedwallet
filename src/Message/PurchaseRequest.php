@@ -132,8 +132,7 @@ class PurchaseRequest extends AbstractRequest
             $data['LastName']               = $this->getCard()->getBillingLastName();
             $data['Phone']                  = $this->getCard()->getBillingPhone();
             $data['AddressLine1']           = $this->getCard()->getBillingAddress1();
-            # $data['AddressLine2']           = $this->getCard()->getBillingAddress2();
-            $data['AddressLine2']           = '1';
+            $data['AddressLine2']           = $this->getCard()->getBillingAddress2();
             $data['City']                   = $this->getCard()->getBillingCity();
             $data['State']                  = $this->getCard()->getBillingState();
             $data['CountryId']              = $this->getCard()->getBillingCountry();
