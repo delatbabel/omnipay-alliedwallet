@@ -10,7 +10,7 @@
 processing library for PHP 5.3+. This package implements [Allied Wallet](https://www.alliedwallet.com/) support for Omnipay.
 
 [Allied Wallet](https://www.alliedwallet.com/) offers customized payment solutions to businesses of any size. Allied Wallet provide payment processing services in 164 currencies, 196 countries, and nearly every payment method globally.
- 
+
 ## Installation
 
 Omnipay is installed via [Composer](http://getcomposer.org/). To install, simply add it
@@ -37,6 +37,13 @@ The following gateways are provided by this package:
 
 For general usage instructions, please see the main [Omnipay](https://github.com/thephpleague/omnipay)
 repository.
+
+### Quirks
+
+* Token payments are a new addition and not mentioned in the current API documentation. They have been added to this version of the plugin but not tested yet.
+* The parameters passed to the gateway are not case sensitive.
+* For card payments, there are a lot of mandatory fields for cardholder information. First and last names, phone number, address, city, state, postal code, country, are all listed as mandatory by the gateway documentation.
+* A unique transaction Id (sent to the gateway as trackingId) is required for every transaction. This is alphanumeric with a limit of 100 characters.
 
 ## Support
 
