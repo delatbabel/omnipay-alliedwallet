@@ -116,11 +116,20 @@ class PurchaseRequest extends AbstractRequest
 
         $token = $this->getCardReference();
         if (! empty($token)) {
+            // The cardReference is not yet available at the moment it was coded.
+            // Therefore the token is masked with transactionReference instead
+            $data['SaleTransactionID']      = $token;
+            $this->action                   = 'recurringtransactions';
+
+            /*
             // Token payments
             $data['tokenId']                = $token;
 
             // Card token payments use a different endpoint to card payments.
             $this->action                   = 'tokensaletransactions';
+            */
+
+
 
         } else {
             // Card payments
