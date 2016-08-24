@@ -2,8 +2,7 @@
 
 namespace Omnipay\AlliedWallet\Message;
 
-use Guzzle\Http\ClientInterface;
-use Symfony\Component\HttpFoundation\Request as HttpRequest;
+use Omnipay\Common\Message\AbstractRequest;
 use SoapClient;
 use SoapFault;
 
@@ -22,7 +21,7 @@ use SoapFault;
  *
  * http://service.381808.com/
  */
-abstract class SoapAbstractRequest extends \Omnipay\Common\Message\AbstractRequest
+abstract class SoapAbstractRequest extends AbstractRequest
 {
     /** @var string Namespace for SOAP operations */
     protected $namespace = 'http://service.381808.com/';
@@ -189,12 +188,7 @@ abstract class SoapAbstractRequest extends \Omnipay\Common\Message\AbstractReque
      * @return array
      * @throws \Exception
      */
-    protected function runTransaction($soapClient, $data)
-    {
-        // Dummy, over-ride this.
-        $this->responseName = 'NoResult';
-        return $data;
-    }
+    abstract protected function runTransaction($soapClient, $data);
 
     /**
      * Send Data to the Gateway
