@@ -93,6 +93,7 @@ class SoapVoidRequest extends SoapCaptureRequest
     protected function runTransaction($soapClient, $data)
     {
         // SOAP function for void transaction
+        $this->responseName = 'VoidResult';
         return $soapClient->Void($data);
     }
 }

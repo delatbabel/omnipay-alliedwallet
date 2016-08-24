@@ -78,9 +78,10 @@ class SoapAuthorizeRequest extends SoapPurchaseRequest
     {
         // SOAP function for execute transaction on credit card data
         if ($this->getTransactionId()) {
+            $this->responseName = 'PreauthorizeCreditCard2Result';
             return $soapClient->PreauthorizeCreditCard2($data);
-        } else {
-            return $soapClient->PreauthorizeCreditCard($data);
         }
+        $this->responseName = 'PreauthorizeCreditCardResult';
+        return $soapClient->PreauthorizeCreditCard($data);
     }
 }

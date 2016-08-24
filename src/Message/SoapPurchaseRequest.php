@@ -116,8 +116,10 @@ class SoapPurchaseRequest extends SoapAbstractRequest
     {
         // SOAP function for execute transaction on credit card data
         if ($this->getTransactionId()) {
+            $this->responseName = 'ExecuteCreditCard2Result';
             return $soapClient->ExecuteCreditCard2($data);
         }
+        $this->responseName = 'ExecuteCreditCardResult';
         return $soapClient->ExecuteCreditCard($data);
     }
 }

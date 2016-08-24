@@ -106,8 +106,10 @@ class SoapRefundRequest extends SoapCaptureRequest
     {
         // SOAP function for refund transaction
         if ($this->getAmount()) {
+            $this->responseName = 'PartialRefundResult';
             return $soapClient->PartialRefund($data);
         }
+        $this->responseName = 'RefundResult';
         return $soapClient->Refund($data);
     }
 }

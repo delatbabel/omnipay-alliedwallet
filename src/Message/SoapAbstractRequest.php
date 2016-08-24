@@ -24,6 +24,7 @@ use SoapFault;
  */
 abstract class SoapAbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
+    /** @var string Namespace for SOAP operations */
     protected $namespace = 'http://service.381808.com/';
 
     /**
@@ -42,6 +43,9 @@ abstract class SoapAbstractRequest extends \Omnipay\Common\Message\AbstractReque
 
     /** @var  SoapClient */
     protected $soapClient;
+
+    /** @var  string The name of the object that is expected in the SOAP response */
+    public $responseName;
 
     /**
      * The generated SOAP request data, saved immediately before a transaction is run.
@@ -188,6 +192,7 @@ abstract class SoapAbstractRequest extends \Omnipay\Common\Message\AbstractReque
     protected function runTransaction($soapClient, $data)
     {
         // Dummy, over-ride this.
+        $this->responseName = 'NoResult';
         return $data;
     }
 

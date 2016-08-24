@@ -105,6 +105,7 @@ class SoapCaptureRequest extends SoapAbstractRequest
     protected function runTransaction($soapClient, $data)
     {
         // SOAP function for execute capture transaction
+        $this->responseName = 'CaptureResult';
         return $soapClient->Capture($data);
     }
 }
