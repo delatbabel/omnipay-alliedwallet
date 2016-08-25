@@ -2,7 +2,7 @@
 
 namespace Omnipay\AlliedWallet\Message;
 
-use Omnipay\Common\Message\AbstractRequest;
+use Omnipay\Common\Message\AbstractRequest as OmnipayAbstractRequest;
 use SoapClient;
 use SoapFault;
 use Guzzle\Http\ClientInterface;
@@ -23,7 +23,7 @@ use Symfony\Component\HttpFoundation\Request as HttpRequest;
  *
  * http://service.381808.com/
  */
-abstract class SoapAbstractRequest extends AbstractRequest
+abstract class SoapAbstractRequest extends OmnipayAbstractRequest
 {
     /** @var string Namespace for SOAP operations */
     protected $namespace = 'http://service.381808.com/';
