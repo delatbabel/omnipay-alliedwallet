@@ -194,7 +194,7 @@ class SoapGatewayTest extends GatewayTestCase
         $result = new \stdClass();
         $result->State          = 2;
         $result->Status         = 1;
-        $result->Message        = 'Approved BankAuth: 826914443 CvvResult: M CVVCodeReason: CVV2 Match';
+        $result->Message        = '';
         $result->Technical      = '';
         $result->TransactionID  = 'f0e5b9f4-ec28-4ff2-aaed-195ec71aefcc';
 
@@ -214,7 +214,7 @@ class SoapGatewayTest extends GatewayTestCase
         $this->assertTrue($response->isSuccessful());
         $this->assertFalse($response->isRedirect());
         $this->assertEquals('f0e5b9f4-ec28-4ff2-aaed-195ec71aefcc', $response->getTransactionReference());
-        $this->assertSame('Approved BankAuth: 826914443 CvvResult: M CVVCodeReason: CVV2 Match', $response->getMessage());
+        $this->assertEmpty($response->getMessage());
     }
 
     public function testRefundSuccessNoAmount()
