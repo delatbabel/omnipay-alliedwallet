@@ -112,8 +112,8 @@ class SoapGateway extends AbstractGateway
     public function __construct(
         ClientInterface $httpClient = null,
         HttpRequest $httpRequest = null,
-        \SoapClient $soapClient = null)
-    {
+        \SoapClient $soapClient = null
+    ) {
         parent::__construct($httpClient, $httpRequest);
         $this->soapClient = $soapClient;
     }

@@ -81,8 +81,8 @@ abstract class SoapAbstractRequest extends OmnipayAbstractRequest
     public function __construct(
         ClientInterface $httpClient,
         HttpRequest $httpRequest,
-        SoapClient $soapClient = null)
-    {
+        SoapClient $soapClient = null
+    ) {
         parent::__construct($httpClient, $httpRequest);
         $this->soapClient = $soapClient;
     }
