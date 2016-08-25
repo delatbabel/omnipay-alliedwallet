@@ -5,6 +5,8 @@ namespace Omnipay\AlliedWallet\Message;
 use Omnipay\Common\Message\AbstractRequest;
 use SoapClient;
 use SoapFault;
+use Guzzle\Http\ClientInterface;
+use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 /**
  * Allied Wallet SOAP gateway Abstract Request
@@ -61,11 +63,29 @@ abstract class SoapAbstractRequest extends AbstractRequest
     protected $response;
 
     /**
-     * The amount of time in seconds to wait for both a connection and a response. Total potential wait time is this value times 2 (connection + response).
+     * The amount of time in seconds to wait for both a connection and a response.
+     *
+     * Total potential wait time is this value times 2 (connection + response).
      *
      * @var float
      */
     public $timeout = 10;
+
+    /**
+     * Create a new Request
+     *
+     * @param ClientInterface $httpClient  A Guzzle client to make API calls with
+     * @param HttpRequest     $httpRequest A Symfony HTTP request object
+     * @param SoapClient      $soapClient
+     */
+    public function __construct(
+        ClientInterface $httpClient,
+        HttpRequest $httpRequest,
+        SoapClient $soapClient = null)
+    {
+        parent::__construct($httpClient, $httpRequest);
+        $this->soapClient = $soapClient;
+    }
 
     /**
      * Get merchant id

@@ -2,7 +2,10 @@
 
 namespace Omnipay\AlliedWallet;
 
+use Guzzle\Http\ClientInterface;
+use Omnipay\AlliedWallet\Message\SoapAbstractRequest;
 use Omnipay\Common\AbstractGateway;
+use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 /**
  * Allied Wallet SOAP gateway
@@ -96,7 +99,63 @@ use Omnipay\Common\AbstractGateway;
  */
 class SoapGateway extends AbstractGateway
 {
-    /* Default Abstract Gateway methods that need to be overridden */
+    /** @var \SoapClient */
+    protected $soapClient;
+
+    /**
+     * Create a new gateway instance
+     *
+     * @param ClientInterface $httpClient  A Guzzle client to make API calls with
+     * @param HttpRequest     $httpRequest A Symfony HTTP request object
+     * @param \SoapClient     $soapClient
+     */
+    public function __construct(
+        ClientInterface $httpClient = null,
+        HttpRequest $httpRequest = null,
+        \SoapClient $soapClient = null)
+    {
+        parent::__construct($httpClient, $httpRequest);
+        $this->soapClient = $soapClient;
+    }
+
+    /**
+     * Create and initialize a request object
+     *
+     * This function is usually used to create objects of type
+     * Omnipay\Common\Message\AbstractRequest (or a non-abstract subclass of it)
+     * and initialise them with using existing parameters from this gateway.
+     *
+     * Example:
+     *
+     * <code>
+     *   class MyRequest extends \Omnipay\Common\Message\AbstractRequest {};
+     *
+     *   class MyGateway extends \Omnipay\Common\AbstractGateway {
+     *     function myRequest($parameters) {
+     *       $this->createRequest('MyRequest', $parameters);
+     *     }
+     *   }
+     *
+     *   // Create the gateway object
+     *   $gw = Omnipay::create('MyGateway');
+     *
+     *   // Create the request object
+     *   $myRequest = $gw->myRequest($someParameters);
+     * </code>
+     *
+     * @see \Omnipay\Common\Message\AbstractRequest
+     * @param string $class The request class name
+     * @param array $parameters
+     * @return \Omnipay\Common\Message\AbstractRequest
+     */
+    protected function createRequest($class, array $parameters)
+    {
+        /** @var SoapAbstractRequest $obj */
+        $obj = new $class($this->httpClient, $this->httpRequest, $this->soapClient);
+
+        return $obj->initialize(array_replace($this->getParameters(), $parameters));
+    }
+
     public function getName()
     {
         return 'Allied Wallet - SOAP';

@@ -1,0 +1,1038 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://service.381808.com/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://service.381808.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://service.381808.com/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="BatchShipping">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Details" type="tns:ArrayOfShippingDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfShippingDetails">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ShippingDetails" type="tns:ShippingDetails" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ShippingDetails">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TransactionID" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="ShippingAgent" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TrackingNumber" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="BatchShippingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BatchShippingResult" type="tns:ArrayOfFailedTransaction" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfFailedTransaction">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FailedTransaction" type="tns:FailedTransaction" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FailedTransaction">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TransactionID" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reason" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RepeatTransaction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MerchantID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="TransactionID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrencyID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RepeatTransactionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RepeatTransactionResult" type="tns:ExecuteResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ExecuteResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="State" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Technical" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransactionID" type="s1:guid" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Refund">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MerchantID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="TransactionID" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RefundResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RefundResult" type="tns:ExecuteResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PartialRefund">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MerchantID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="TransactionID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="RefundAmount" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PartialRefundResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PartialRefundResult" type="tns:ExecuteResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Void">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MerchantID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="TransactionID" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VoidResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VoidResult" type="tns:ExecuteResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Capture">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MerchantID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="TransactionID" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CaptureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CaptureResult" type="tns:ExecuteResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PreauthorizeCreditCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MerchantID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="SiteID" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="IPAddress" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrencyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExpiryMonth" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExpiryYear" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardCVV" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PreauthorizeCreditCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PreauthorizeCreditCardResult" type="tns:ExecuteResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PreauthorizeCreditCard2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MerchantID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="SiteID" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="IPAddress" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrencyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExpiryMonth" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExpiryYear" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardCVV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MerchantReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PreauthorizeCreditCard2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PreauthorizeCreditCard2Result" type="tns:ExecuteResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PreauthorizeAVS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MerchantID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="SiteID" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="IPAddress" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrencyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExpiryMonth" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExpiryYear" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardCVV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MerchantReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PreauthorizeAVSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PreauthorizeAVSResult" type="tns:ExecuteResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PreauthorizeInitialRecur">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MerchantID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="SiteID" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="IPAddress" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrencyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExpiryMonth" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExpiryYear" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardCVV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MerchantReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PreauthorizeInitialRecurResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PreauthorizeInitialRecurResult" type="tns:ExecuteResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PreauthorizeThreeDMPI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MerchantID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="SiteID" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="IPAddress" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrencyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExpiryMonth" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExpiryYear" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardCVV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MerchantReference" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ECI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="XID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AcsVerificationID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PreauthorizeThreeDMPIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PreauthorizeThreeDMPIResult" type="tns:ExecuteResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExecuteCreditCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MerchantID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="SiteID" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="IPAddress" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrencyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExpiryMonth" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExpiryYear" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardCVV" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExecuteCreditCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ExecuteCreditCardResult" type="tns:ExecuteResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExecuteInitialRecur">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MerchantID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="SiteID" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="IPAddress" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrencyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExpiryMonth" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExpiryYear" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardCVV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MerchantReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExecuteInitialRecurResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ExecuteInitialRecurResult" type="tns:ExecuteResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExecuteThreeDMPI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MerchantID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="SiteID" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="IPAddress" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrencyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExpiryMonth" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExpiryYear" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardCVV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MerchantReference" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ECI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="XID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AcsVerificationID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExecuteThreeDMPIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ExecuteThreeDMPIResult" type="tns:ExecuteResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExecuteCreditCard2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MerchantID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="SiteID" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="IPAddress" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrencyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ZipCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExpiryMonth" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExpiryYear" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardCVV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MerchantReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExecuteCreditCard2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ExecuteCreditCard2Result" type="tns:ExecuteResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckTransaction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MerchantID" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="MerchantReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckTransactionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckTransactionResult" type="tns:ExecuteResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerifyThreeDEnrollment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MerchantID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="SiteID" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="IPAddress" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="CurrencyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PostalCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExpiryMonth" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="ExpiryYear" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardCVV" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MerchantReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerifyThreeDEnrollmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VerifyThreeDEnrollmentResult" type="tns:ThreeDVerifyResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ThreeDVerifyResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="State" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Technical" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransactionID" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="MD" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaReq" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AcsURL" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ExecuteThreeD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="MerchantID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="SiteID" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="MD" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="PaReq" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExecuteThreeDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ExecuteThreeDResult" type="tns:ExecuteResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="BatchShippingSoapIn">
+    <wsdl:part name="parameters" element="tns:BatchShipping" />
+  </wsdl:message>
+  <wsdl:message name="BatchShippingSoapOut">
+    <wsdl:part name="parameters" element="tns:BatchShippingResponse" />
+  </wsdl:message>
+  <wsdl:message name="RepeatTransactionSoapIn">
+    <wsdl:part name="parameters" element="tns:RepeatTransaction" />
+  </wsdl:message>
+  <wsdl:message name="RepeatTransactionSoapOut">
+    <wsdl:part name="parameters" element="tns:RepeatTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="RefundSoapIn">
+    <wsdl:part name="parameters" element="tns:Refund" />
+  </wsdl:message>
+  <wsdl:message name="RefundSoapOut">
+    <wsdl:part name="parameters" element="tns:RefundResponse" />
+  </wsdl:message>
+  <wsdl:message name="PartialRefundSoapIn">
+    <wsdl:part name="parameters" element="tns:PartialRefund" />
+  </wsdl:message>
+  <wsdl:message name="PartialRefundSoapOut">
+    <wsdl:part name="parameters" element="tns:PartialRefundResponse" />
+  </wsdl:message>
+  <wsdl:message name="VoidSoapIn">
+    <wsdl:part name="parameters" element="tns:Void" />
+  </wsdl:message>
+  <wsdl:message name="VoidSoapOut">
+    <wsdl:part name="parameters" element="tns:VoidResponse" />
+  </wsdl:message>
+  <wsdl:message name="CaptureSoapIn">
+    <wsdl:part name="parameters" element="tns:Capture" />
+  </wsdl:message>
+  <wsdl:message name="CaptureSoapOut">
+    <wsdl:part name="parameters" element="tns:CaptureResponse" />
+  </wsdl:message>
+  <wsdl:message name="PreauthorizeCreditCardSoapIn">
+    <wsdl:part name="parameters" element="tns:PreauthorizeCreditCard" />
+  </wsdl:message>
+  <wsdl:message name="PreauthorizeCreditCardSoapOut">
+    <wsdl:part name="parameters" element="tns:PreauthorizeCreditCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="PreauthorizeCreditCard2SoapIn">
+    <wsdl:part name="parameters" element="tns:PreauthorizeCreditCard2" />
+  </wsdl:message>
+  <wsdl:message name="PreauthorizeCreditCard2SoapOut">
+    <wsdl:part name="parameters" element="tns:PreauthorizeCreditCard2Response" />
+  </wsdl:message>
+  <wsdl:message name="PreauthorizeAVSSoapIn">
+    <wsdl:part name="parameters" element="tns:PreauthorizeAVS" />
+  </wsdl:message>
+  <wsdl:message name="PreauthorizeAVSSoapOut">
+    <wsdl:part name="parameters" element="tns:PreauthorizeAVSResponse" />
+  </wsdl:message>
+  <wsdl:message name="PreauthorizeInitialRecurSoapIn">
+    <wsdl:part name="parameters" element="tns:PreauthorizeInitialRecur" />
+  </wsdl:message>
+  <wsdl:message name="PreauthorizeInitialRecurSoapOut">
+    <wsdl:part name="parameters" element="tns:PreauthorizeInitialRecurResponse" />
+  </wsdl:message>
+  <wsdl:message name="PreauthorizeThreeDMPISoapIn">
+    <wsdl:part name="parameters" element="tns:PreauthorizeThreeDMPI" />
+  </wsdl:message>
+  <wsdl:message name="PreauthorizeThreeDMPISoapOut">
+    <wsdl:part name="parameters" element="tns:PreauthorizeThreeDMPIResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteCreditCardSoapIn">
+    <wsdl:part name="parameters" element="tns:ExecuteCreditCard" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteCreditCardSoapOut">
+    <wsdl:part name="parameters" element="tns:ExecuteCreditCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteInitialRecurSoapIn">
+    <wsdl:part name="parameters" element="tns:ExecuteInitialRecur" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteInitialRecurSoapOut">
+    <wsdl:part name="parameters" element="tns:ExecuteInitialRecurResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteThreeDMPISoapIn">
+    <wsdl:part name="parameters" element="tns:ExecuteThreeDMPI" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteThreeDMPISoapOut">
+    <wsdl:part name="parameters" element="tns:ExecuteThreeDMPIResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteCreditCard2SoapIn">
+    <wsdl:part name="parameters" element="tns:ExecuteCreditCard2" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteCreditCard2SoapOut">
+    <wsdl:part name="parameters" element="tns:ExecuteCreditCard2Response" />
+  </wsdl:message>
+  <wsdl:message name="CheckTransactionSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckTransaction" />
+  </wsdl:message>
+  <wsdl:message name="CheckTransactionSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerifyThreeDEnrollmentSoapIn">
+    <wsdl:part name="parameters" element="tns:VerifyThreeDEnrollment" />
+  </wsdl:message>
+  <wsdl:message name="VerifyThreeDEnrollmentSoapOut">
+    <wsdl:part name="parameters" element="tns:VerifyThreeDEnrollmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteThreeDSoapIn">
+    <wsdl:part name="parameters" element="tns:ExecuteThreeD" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteThreeDSoapOut">
+    <wsdl:part name="parameters" element="tns:ExecuteThreeDResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MerchantSoap">
+    <wsdl:operation name="BatchShipping">
+      <wsdl:input message="tns:BatchShippingSoapIn" />
+      <wsdl:output message="tns:BatchShippingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RepeatTransaction">
+      <wsdl:input message="tns:RepeatTransactionSoapIn" />
+      <wsdl:output message="tns:RepeatTransactionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Refund">
+      <wsdl:input message="tns:RefundSoapIn" />
+      <wsdl:output message="tns:RefundSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PartialRefund">
+      <wsdl:input message="tns:PartialRefundSoapIn" />
+      <wsdl:output message="tns:PartialRefundSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Void">
+      <wsdl:input message="tns:VoidSoapIn" />
+      <wsdl:output message="tns:VoidSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Capture">
+      <wsdl:input message="tns:CaptureSoapIn" />
+      <wsdl:output message="tns:CaptureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PreauthorizeCreditCard">
+      <wsdl:input message="tns:PreauthorizeCreditCardSoapIn" />
+      <wsdl:output message="tns:PreauthorizeCreditCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PreauthorizeCreditCard2">
+      <wsdl:input message="tns:PreauthorizeCreditCard2SoapIn" />
+      <wsdl:output message="tns:PreauthorizeCreditCard2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PreauthorizeAVS">
+      <wsdl:input message="tns:PreauthorizeAVSSoapIn" />
+      <wsdl:output message="tns:PreauthorizeAVSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PreauthorizeInitialRecur">
+      <wsdl:input message="tns:PreauthorizeInitialRecurSoapIn" />
+      <wsdl:output message="tns:PreauthorizeInitialRecurSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PreauthorizeThreeDMPI">
+      <wsdl:input message="tns:PreauthorizeThreeDMPISoapIn" />
+      <wsdl:output message="tns:PreauthorizeThreeDMPISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteCreditCard">
+      <wsdl:input message="tns:ExecuteCreditCardSoapIn" />
+      <wsdl:output message="tns:ExecuteCreditCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteInitialRecur">
+      <wsdl:input message="tns:ExecuteInitialRecurSoapIn" />
+      <wsdl:output message="tns:ExecuteInitialRecurSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteThreeDMPI">
+      <wsdl:input message="tns:ExecuteThreeDMPISoapIn" />
+      <wsdl:output message="tns:ExecuteThreeDMPISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteCreditCard2">
+      <wsdl:input message="tns:ExecuteCreditCard2SoapIn" />
+      <wsdl:output message="tns:ExecuteCreditCard2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckTransaction">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns the transaction status for the last MerchantReference</wsdl:documentation>
+      <wsdl:input message="tns:CheckTransactionSoapIn" />
+      <wsdl:output message="tns:CheckTransactionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyThreeDEnrollment">
+      <wsdl:input message="tns:VerifyThreeDEnrollmentSoapIn" />
+      <wsdl:output message="tns:VerifyThreeDEnrollmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteThreeD">
+      <wsdl:input message="tns:ExecuteThreeDSoapIn" />
+      <wsdl:output message="tns:ExecuteThreeDSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MerchantSoap" type="tns:MerchantSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="BatchShipping">
+      <soap:operation soapAction="http://service.381808.com/BatchShipping" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RepeatTransaction">
+      <soap:operation soapAction="http://service.381808.com/RepeatTransaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Refund">
+      <soap:operation soapAction="http://service.381808.com/Refund" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PartialRefund">
+      <soap:operation soapAction="http://service.381808.com/PartialRefund" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Void">
+      <soap:operation soapAction="http://service.381808.com/Void" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Capture">
+      <soap:operation soapAction="http://service.381808.com/Capture" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreauthorizeCreditCard">
+      <soap:operation soapAction="http://service.381808.com/PreauthorizeCreditCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreauthorizeCreditCard2">
+      <soap:operation soapAction="http://service.381808.com/PreauthorizeCreditCard2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreauthorizeAVS">
+      <soap:operation soapAction="http://service.381808.com/PreauthorizeAVS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreauthorizeInitialRecur">
+      <soap:operation soapAction="http://service.381808.com/PreauthorizeInitialRecur" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreauthorizeThreeDMPI">
+      <soap:operation soapAction="http://service.381808.com/PreauthorizeThreeDMPI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteCreditCard">
+      <soap:operation soapAction="http://service.381808.com/ExecuteCreditCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteInitialRecur">
+      <soap:operation soapAction="http://service.381808.com/ExecuteInitialRecur" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteThreeDMPI">
+      <soap:operation soapAction="http://service.381808.com/ExecuteThreeDMPI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteCreditCard2">
+      <soap:operation soapAction="http://service.381808.com/ExecuteCreditCard2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckTransaction">
+      <soap:operation soapAction="http://service.381808.com/CheckTransaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyThreeDEnrollment">
+      <soap:operation soapAction="http://service.381808.com/VerifyThreeDEnrollment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteThreeD">
+      <soap:operation soapAction="http://service.381808.com/ExecuteThreeD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MerchantSoap12" type="tns:MerchantSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="BatchShipping">
+      <soap12:operation soapAction="http://service.381808.com/BatchShipping" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RepeatTransaction">
+      <soap12:operation soapAction="http://service.381808.com/RepeatTransaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Refund">
+      <soap12:operation soapAction="http://service.381808.com/Refund" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PartialRefund">
+      <soap12:operation soapAction="http://service.381808.com/PartialRefund" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Void">
+      <soap12:operation soapAction="http://service.381808.com/Void" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Capture">
+      <soap12:operation soapAction="http://service.381808.com/Capture" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreauthorizeCreditCard">
+      <soap12:operation soapAction="http://service.381808.com/PreauthorizeCreditCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreauthorizeCreditCard2">
+      <soap12:operation soapAction="http://service.381808.com/PreauthorizeCreditCard2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreauthorizeAVS">
+      <soap12:operation soapAction="http://service.381808.com/PreauthorizeAVS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreauthorizeInitialRecur">
+      <soap12:operation soapAction="http://service.381808.com/PreauthorizeInitialRecur" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreauthorizeThreeDMPI">
+      <soap12:operation soapAction="http://service.381808.com/PreauthorizeThreeDMPI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteCreditCard">
+      <soap12:operation soapAction="http://service.381808.com/ExecuteCreditCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteInitialRecur">
+      <soap12:operation soapAction="http://service.381808.com/ExecuteInitialRecur" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteThreeDMPI">
+      <soap12:operation soapAction="http://service.381808.com/ExecuteThreeDMPI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteCreditCard2">
+      <soap12:operation soapAction="http://service.381808.com/ExecuteCreditCard2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckTransaction">
+      <soap12:operation soapAction="http://service.381808.com/CheckTransaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyThreeDEnrollment">
+      <soap12:operation soapAction="http://service.381808.com/VerifyThreeDEnrollment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteThreeD">
+      <soap12:operation soapAction="http://service.381808.com/ExecuteThreeD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Merchant">
+    <wsdl:port name="MerchantSoap" binding="tns:MerchantSoap">
+      <soap:address location="https://service.381808.com/Merchant.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MerchantSoap12" binding="tns:MerchantSoap12">
+      <soap12:address location="https://service.381808.com/Merchant.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
