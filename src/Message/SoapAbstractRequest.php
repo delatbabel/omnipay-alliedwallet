@@ -2,10 +2,10 @@
 
 namespace Omnipay\AlliedWallet\Message;
 
+use Guzzle\Http\ClientInterface;
 use Omnipay\Common\Message\AbstractRequest as OmnipayAbstractRequest;
 use SoapClient;
 use SoapFault;
-use Guzzle\Http\ClientInterface;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 
 /**
@@ -144,7 +144,7 @@ abstract class SoapAbstractRequest extends OmnipayAbstractRequest
      */
     public function getData()
     {
-        $this->request = array();
+        $this->request                  = array();
         $this->request['MerchantID']    = $this->getMerchantId();
 
         return $this->request;

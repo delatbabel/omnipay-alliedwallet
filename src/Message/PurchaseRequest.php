@@ -146,7 +146,6 @@ class PurchaseRequest extends AbstractRequest
             // Recurring payments use a different endpoint.
             $this->action                   = 'recurringtransactions';
         } else {
-
             $this->validate('siteId', 'currency', 'transactionId');
 
             // These parameters are not used for recurring transactions
@@ -161,7 +160,6 @@ class PurchaseRequest extends AbstractRequest
 
                 // Card token payments use a different endpoint to card payments.
                 $this->action                   = 'tokensaletransactions';
-
             } else {
                 // Card payments
                 $this->validate('card', 'clientIp');
