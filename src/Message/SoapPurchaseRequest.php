@@ -71,11 +71,11 @@ class SoapPurchaseRequest extends SoapAbstractRequest
         $this->validate('amount', 'card', 'currency');
 
         // Create the base request
-        $this->request = parent::getData();
+        $this->request                  = parent::getData();
         $this->request['SiteID']        = $this->getSiteId();
 
         // Fill the request data
-        $card = $this->getCard();
+        $card                               = $this->getCard();
         $this->request['IPAddress']         = $this->getClientIp();
         $this->request['Amount']            = $this->getAmount();
         $this->request['CurrencyID']        = $this->getCurrency();
