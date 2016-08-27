@@ -3,6 +3,7 @@
 **Allied Wallet driver for the Omnipay PHP payment processing library**
 
 [![Build Status](https://travis-ci.org/delatbabel/omnipay-alliedwallet.png?branch=master)](https://travis-ci.org/delatbabel/omnipay-alliedwallet)
+[![StyleCI](https://styleci.io/repos/64196245/shield)](https://styleci.io/repos/64196245)
 [![Latest Stable Version](https://poser.pugx.org/delatbabel/omnipay-alliedwallet/version.png)](https://packagist.org/packages/delatbabel/omnipay-alliedwallet)
 [![Total Downloads](https://poser.pugx.org/delatbabel/omnipay-alliedwallet/d/total.png)](https://packagist.org/packages/delatbabel/omnipay-alliedwallet)
 
