@@ -32,6 +32,14 @@ class PurchaseRequestTest extends TestCase
         $this->assertSame('123456', $data['tokenId']);
     }
 
+    public function testDataWithTransactionReference()
+    {
+        $this->request->setTransactionReference('123456');
+        $data = $this->request->getData();
+
+        $this->assertSame('123456', $data['SaleTransactionId']);
+    }
+
     public function testDataWithCard()
     {
         $card = $this->getValidCard();
