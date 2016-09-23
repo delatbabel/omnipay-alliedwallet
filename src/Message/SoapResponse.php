@@ -46,7 +46,9 @@ class SoapResponse extends AbstractResponse
      */
     public function getCode()
     {
-        if (! empty($this->data['Status'])) {
+        // One of the response code from the gateway is Status : 0
+        // Therefore using empty() PHP function will fail the condition.
+        if (isset($this->data['Status']) && ! is_null($this->data['Status'])) {
             return $this->data['Status'];
         }
         return null;
